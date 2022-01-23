@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:/Users/zeker/OneDrive/Masaüstü/RV_Tool/tool/ui/rv_tool_v6.ui'
+# Form implementation generated from reading ui file 'C:\Users\zeker\OneDrive\Masaüstü\RV_Tool\tool\valu3s_tool\ui\rv_tool_v1_6.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
