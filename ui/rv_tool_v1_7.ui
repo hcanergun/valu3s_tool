@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1149</width>
-    <height>741</height>
+    <width>1145</width>
+    <height>732</height>
    </rect>
   </property>
   <property name="palette">
@@ -629,7 +629,7 @@ QTabBar::tab:right:selected {
 </string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="W_ConfigNodePage">
            <property name="styleSheet">
@@ -3157,7 +3157,7 @@ QTabBar::tab:right:selected {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1149</width>
+     <width>1145</width>
      <height>29</height>
     </rect>
    </property>
