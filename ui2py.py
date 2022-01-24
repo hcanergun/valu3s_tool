@@ -3,15 +3,15 @@ import os
 if __name__ == "__main__":
 
     # get the latest file name from ./ui/..
-    files=[_ for _ in os.listdir("./ui/") if _.endswith("ui")]
+    files = [_ for _ in os.listdir("./ui/") if _.endswith("ui")]
     filename = files[-1]
 
     # get absolute path of pyuic5.exe
-    pyuic5Path=os.path.abspath("venv/Scripts/pyuic5.exe")
-    guiFilePath=os.path.abspath("ui/"+filename)
+    pyuic5Path = os.path.abspath("venv/Scripts/pyuic5.exe")
+    guiFilePath = os.path.abspath("ui/" + filename)
 
     # output file name
-    outputFileName="tool_gui.py"
+    outputFileName = "tool_gui.py"
 
     try:
         print(f"'{filename}' is going to be converted !!")
