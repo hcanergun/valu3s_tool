@@ -5,10 +5,10 @@
 
 # JetBrains IDE
 .idea/
+__pycache__/
 
 # virtual environment
 venv/
-
 
 
 
