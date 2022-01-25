@@ -1,9 +1,11 @@
-import Verifier
-import Node
+from rv.Node import Node
+from rv.Verifier import Verifier
 
 
 class Monitor:
-    def __init__(self, name: str, logFileName: str, silent: bool, oracle: Verifier, nodes: [Node], topics: list):
+
+    def __init__(self, name: str = None, logFileName: str = None, silent: bool = False, oracle: Verifier = None,
+                 nodes: [Node] = None, topics: list = None):
         self.__name = name
         self.__logFileName = logFileName
         self.__silent = silent
