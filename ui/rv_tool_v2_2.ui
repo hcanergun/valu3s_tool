@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1302</width>
-    <height>713</height>
+    <width>1258</width>
+    <height>669</height>
    </rect>
   </property>
   <property name="palette">
@@ -743,7 +743,7 @@ QTabBar::tab:right:selected {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_24">
+                   <widget class="QPushButton" name="btnConfigImportConf">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -840,19 +840,6 @@ QTabBar::tab:right:selected {
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="4">
-                      <spacer name="horizontalSpacer_18">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
                      <item row="0" column="1">
                       <widget class="QComboBox" name="cbxMonitorEditMonitor_2">
                        <property name="minimumSize">
@@ -888,8 +875,20 @@ QTabBar::tab:right:selected {
                         <enum>QFrame::Raised</enum>
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_18">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
                         <item>
-                         <spacer name="horizontalSpacer_17">
+                         <spacer name="horizontalSpacer">
                           <property name="orientation">
                            <enum>Qt::Horizontal</enum>
                           </property>
@@ -1140,6 +1139,11 @@ QTabBar::tab:right:selected {
                          <pointsize>9</pointsize>
                         </font>
                        </property>
+                       <item>
+                        <property name="text">
+                         <string>8080:192.168.1.1</string>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item row="3" column="2">
@@ -1209,6 +1213,19 @@ QTabBar::tab:right:selected {
                        </item>
                       </widget>
                      </item>
+                     <item row="1" column="4">
+                      <spacer name="horizontalSpacer_18">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
                     </layout>
                    </widget>
                   </item>
@@ -1270,24 +1287,16 @@ QTabBar::tab:right:selected {
                          <pointsize>10</pointsize>
                         </font>
                        </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="4">
-                      <widget class="QLabel" name="lblTopicEditPublisher_2">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>0</height>
-                        </size>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <pointsize>10</pointsize>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>Publisher:</string>
-                       </property>
+                       <item>
+                        <property name="text">
+                         <string>a</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>b</string>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item row="2" column="3">
@@ -1307,27 +1316,6 @@ QTabBar::tab:right:selected {
                        <property name="font">
                         <font>
                          <pointsize>10</pointsize>
-                        </font>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="5">
-                      <widget class="QComboBox" name="cbxTopicEditPublisher_2">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>25</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>25</height>
-                        </size>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <pointsize>9</pointsize>
                         </font>
                        </property>
                       </widget>
@@ -1380,6 +1368,18 @@ QTabBar::tab:right:selected {
                         <enum>QFrame::Raised</enum>
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_15">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
                         <item>
                          <spacer name="horizontalSpacer_15">
                           <property name="orientation">
@@ -1490,6 +1490,11 @@ QTabBar::tab:right:selected {
                        <item>
                         <property name="text">
                          <string>New Topic</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>a</string>
                         </property>
                        </item>
                       </widget>
@@ -1737,6 +1742,18 @@ QTabBar::tab:right:selected {
                         <enum>QFrame::Raised</enum>
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_16">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
                         <item>
                          <spacer name="horizontalSpacer_4">
                           <property name="orientation">
@@ -2049,6 +2066,16 @@ QTabBar::tab:right:selected {
                          <string>New Node</string>
                         </property>
                        </item>
+                       <item>
+                        <property name="text">
+                         <string>a</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>b</string>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item row="2" column="0">
@@ -2141,6 +2168,18 @@ QTabBar::tab:right:selected {
                         <enum>QFrame::Raised</enum>
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_17">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
                         <item>
                          <spacer name="horizontalSpacer_13">
                           <property name="orientation">
@@ -2602,6 +2641,18 @@ QTabBar::tab:right:selected {
                         <enum>QFrame::Raised</enum>
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_7">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
                         <item>
                          <spacer name="horizontalSpacer_22">
                           <property name="orientation">
@@ -2713,19 +2764,6 @@ QTabBar::tab:right:selected {
                         <string>Nodes:</string>
                        </property>
                       </widget>
-                     </item>
-                     <item row="1" column="5">
-                      <spacer name="horizontalSpacer_23">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
                      </item>
                      <item row="3" column="0">
                       <widget class="QLabel" name="label_22">
@@ -2843,6 +2881,19 @@ QTabBar::tab:right:selected {
                         </property>
                        </item>
                       </widget>
+                     </item>
+                     <item row="1" column="5">
+                      <spacer name="horizontalSpacer_23">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
                      </item>
                     </layout>
                    </widget>
@@ -3121,7 +3172,7 @@ QTabBar::tab:right:selected {
                <number>0</number>
               </property>
               <item>
-               <widget class="QListView" name="lwConfigPreview"/>
+               <widget class="QListWidget" name="listWidget"/>
               </item>
              </layout>
             </widget>
@@ -3170,11 +3221,7 @@ QTabBar::tab:right:selected {
         <number>0</number>
        </property>
        <item>
-        <widget class="QListView" name="listView">
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-        </widget>
+        <widget class="QListWidget" name="lwLog"/>
        </item>
       </layout>
      </widget>
@@ -3187,7 +3234,7 @@ QTabBar::tab:right:selected {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1302</width>
+     <width>1258</width>
      <height>29</height>
     </rect>
    </property>
