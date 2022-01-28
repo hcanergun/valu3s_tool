@@ -1,4 +1,4 @@
-import Verifier
+from rv.Verifier import Verifier
 
 
 class TLOracle(Verifier):

@@ -7,6 +7,11 @@
 .idea/
 __pycache__/
 
+GuiTopic.py
+GuiMonitor.py
+GuiNode.py
+GuiOracle.py
+
 # virtual environment
 venv/
 

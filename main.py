@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from tool_gui import Ui_MainWindow
 import sys
 from rv.GuiConfig import GuiConfig
+from rv.GuiVerifier import GuiVerifier
 
 
 class MainWindow(QMainWindow):
@@ -10,6 +11,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.guiConfig = GuiConfig(self.ui)
+        self.guiVerifier = GuiVerifier(self.ui)
 
         # bu fonk cagırılarak baslangıctakı tanımlamalar yapılmıs olacak; signal vs.
         self.initGui()
@@ -17,7 +19,6 @@ class MainWindow(QMainWindow):
     def initGui(self):
         pass
         # signaller vs. burada yazılacak
-
 
 
 if __name__ == "__main__":
