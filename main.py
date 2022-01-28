@@ -13,10 +13,9 @@ class MainWindow(QMainWindow):
         self.__ui.setupUi(self)
 
         self.__guiLog = GuiLog(self.__ui)
-
         self.__guiConfig = GuiConfig(self.__ui,self.__guiLog)
+        self.__guiVerifier = GuiVerifier(self.__ui,self.__guiLog)
 
-        self.__guiVerifier = GuiVerifier(self.__ui)
 
         # bu fonk cagırılarak baslangıctakı tanımlamalar yapılmıs olacak; signal vs.
         self.initGui()
@@ -24,6 +23,14 @@ class MainWindow(QMainWindow):
     def initGui(self):
         # self.pushButton.clicked.connect(self.lineEdit.clear)
         self.__ui.btnConfigImportConf.clicked.connect(self.__guiConfig.importConfig)
+        self.__ui.btnPropertyImport.clicked.connect(self.__guiVerifier.importProperty)
+        self.__ui.btnPropertySave.clicked.connect(self.__guiVerifier.saveProperty2File)
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

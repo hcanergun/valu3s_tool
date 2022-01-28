@@ -1,14 +1,12 @@
 from PyQt5.QtWidgets import *
 from rv.Monitor import Monitor
 from rv.GuiLog import GuiLog
-from tool_gui import Ui_MainWindow
 
 
 class GuiConfig:
     def __init__(self, ui: QMainWindow = None, logger: GuiLog = None, monitor: Monitor = None):
         self.__monitor = monitor
-        # self.__ui = ui
-        self.__ui = Ui_MainWindow()
+        self.__ui = ui
         self.__logger = logger
 
     # burada tüm fonksiyonları implemente edecez.
@@ -25,7 +23,7 @@ class GuiConfig:
         filepath = None
         try:
             if not filepath:
-                raise ImportError(f"<CONFIG IMPORT> An error occured while {filepath} importing")
+                raise ImportError(f"<CONFIG IMPORT> An error occurred while {filepath} importing")
                 # assert num % 2 == 0,"hata var"
         except ImportError:
             self.__logger.printLog(f"An error occurred while {filepath} importing")

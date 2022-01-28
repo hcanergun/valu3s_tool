@@ -1,8 +1,9 @@
 class Verifier:
-    def __init__(self, port: int, url: str, action: str):
+    def __init__(self, port: int = None, url: str = None, action: str = None, properties: list = None):
         self.__port = port
         self.__url = url
         self.__action = action
+        self.__properties = properties
 
     def setPort(self, port: int):
         self.__port = port
@@ -21,3 +22,12 @@ class Verifier:
 
     def getAction(self) -> str:
         return self.__action
+
+    def setProperties(self, properties: list):
+        if self.__properties:
+            self.__properties.extend(properties)
+        else:
+            self.__properties = properties
+
+    def getProperties(self) -> list:
+        return self.__properties

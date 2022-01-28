@@ -1,5 +1,5 @@
 class Topic:
-    def __init__(self, name: str, type: str, action: str, publishers: [str]):
+    def __init__(self, name: str = None, type: str = None, action: str = None, publishers: [str] = None):
         self.__name = name
         self.__type = type
         self.__action = action

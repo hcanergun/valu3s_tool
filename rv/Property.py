@@ -1,8 +1,9 @@
 class Property:
-    def __init__(self, name: str, description: str, formula: str):
+    def __init__(self, name: str = None, description: str = None, formula: str = None, nodeNames: list = None):
         self.__name = name
         self.__description = description
         self.__formula = formula
+        self.__nodeNames = nodeNames
 
     def getName(self) -> str:
         return self.__name
