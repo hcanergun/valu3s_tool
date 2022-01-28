@@ -41,7 +41,7 @@ class GuiVerifier:
         # file , check = QFileDialog.getOpenFileName(None,
         # "Open File","C:/Users/zeker/OneDrive/Masaüstü/YerYazProje/docs", "Text Files (*.txt)")
         try:
-            filePath, check = QFileDialog.getOpenFileName(None, "Open File", "C:/Users/zeker/OneDrive/Masaüstü/","Text Files (*.txt)")
+            filePath, check = QFileDialog.getOpenFileName(None, "Open File", "","Text Files (*.txt)")
             #filePath = 'C:/Users/zeker/OneDrive/Masaüstü/New Text Document.txt'
             if filePath:
                 self.__logger.printLog("File selection completed successfully", color="green")
