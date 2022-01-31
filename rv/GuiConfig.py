@@ -1,20 +1,14 @@
 from PyQt5.QtWidgets import *
 from rv.Monitor import Monitor
 from rv.GuiLog import GuiLog
+from tool_gui import Ui_MainWindow
 
 
 class GuiConfig:
-    def __init__(self, ui: QMainWindow = None, logger: GuiLog = None, monitor: Monitor = None):
+    def __init__(self, ui: Ui_MainWindow = None, logger: GuiLog = None, monitor: Monitor = None):
         self.__monitor = monitor
         self.__ui = ui
         self.__logger = logger
-
-    # burada tüm fonksiyonları implemente edecez.
-    def addNode(self):
-        # örnek
-        # ilgili tüm widget lara burada self.__ui üzerinden erişebiliriiz.
-        # buradaki fonksiyonları main de signal'e baglıcaz.
-        self.__ui.txtNodeCreateName.text()
 
     def importConfig(self):
 

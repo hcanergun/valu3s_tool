@@ -1,5 +1,8 @@
+from rv.Property import Property
+
+
 class Verifier:
-    def __init__(self, port: int = None, url: str = None, action: str = None, properties: list = None):
+    def __init__(self, port: int = None, url: str = None, action: str = None, properties: [Property] = []):
         self.__port = port
         self.__url = url
         self.__action = action
@@ -23,11 +26,27 @@ class Verifier:
     def getAction(self) -> str:
         return self.__action
 
-    def setProperties(self, properties: list):
-        if self.__properties:
-            self.__properties.extend(properties)
-        else:
-            self.__properties = properties
+    def setProperties(self, properties: Property):
+        self.__properties.append(properties)
 
-    def getProperties(self) -> list:
+    def getProperties(self) -> [Property]:
         return self.__properties
+
+    def getPropertyByName(self, name: str) -> Property:
+        for property in self.__properties:
+            if property.getName() == name:
+                return property
+        return None
+
+    def getPropertiesByName(self, names: [str]) -> [Property]:
+        temp = []
+        for property in self.__properties:
+            if property.getName() in names:
+                temp.append(property)
+        return temp
+
+    def isExist(self, name: str) -> bool:
+        for property in self.__properties:
+            if property.getName() == name:
+                return True
+        return False

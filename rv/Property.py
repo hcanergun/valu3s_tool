@@ -1,5 +1,5 @@
 class Property:
-    def __init__(self, name: str = None, description: str = None, formula: str = None, nodeNames: list = None):
+    def __init__(self, name: str = None, description: str = None, formula: str = None, nodeNames: [str] = []):
         self.__name = name
         self.__description = description
         self.__formula = formula
@@ -22,3 +22,9 @@ class Property:
 
     def setFormula(self, formula: str):
         self.__formula = formula
+
+    def getNodeNames(self) -> [str]:
+        return self.__nodeNames
+
+    def setNodeNames(self, nodeNames: str):
+        self.__nodeNames.append(nodeNames)

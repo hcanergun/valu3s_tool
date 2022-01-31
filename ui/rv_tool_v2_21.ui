@@ -669,7 +669,7 @@ QTabBar::tab:right:selected {
 </string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="W_RVConfigPage">
            <property name="styleSheet">
@@ -1139,11 +1139,6 @@ QTabBar::tab:right:selected {
                          <pointsize>9</pointsize>
                         </font>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>8080:192.168.1.1</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                      <item row="3" column="2">
@@ -1186,31 +1181,6 @@ QTabBar::tab:right:selected {
                        <property name="selectionMode">
                         <enum>QAbstractItemView::MultiSelection</enum>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                      <item row="1" column="4">
@@ -1287,16 +1257,6 @@ QTabBar::tab:right:selected {
                          <pointsize>10</pointsize>
                         </font>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>a</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>b</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                      <item row="2" column="3">
@@ -1490,11 +1450,6 @@ QTabBar::tab:right:selected {
                        <item>
                         <property name="text">
                          <string>New Topic</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>a</string>
                         </property>
                        </item>
                       </widget>
@@ -2064,16 +2019,6 @@ QTabBar::tab:right:selected {
                        <item>
                         <property name="text">
                          <string>New Node</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>a</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>b</string>
                         </property>
                        </item>
                       </widget>
@@ -2847,37 +2792,7 @@ QTabBar::tab:right:selected {
                        </property>
                        <item>
                         <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
+                         <string>test</string>
                         </property>
                        </item>
                       </widget>
@@ -2964,31 +2879,6 @@ QTabBar::tab:right:selected {
                        <property name="selectionMode">
                         <enum>QAbstractItemView::MultiSelection</enum>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>New Item</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                      <item row="0" column="3">
