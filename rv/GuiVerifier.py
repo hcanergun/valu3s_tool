@@ -103,7 +103,7 @@ class GuiVerifier:
         filePath = self.openFileDialogWindow()
         if not filePath:
             return
-        properties = self.getTxtFileContent(filePath=filePath)
+        properties = self.getJSONFileContent(filePath=filePath)
         for property in properties["properties"]:
             if self.__ui.cbxPropertyImportType.currentText() == "TL Oracle":
                 self.__tlOracle.setProperties(Property(name=property["name"],
@@ -133,7 +133,7 @@ class GuiVerifier:
         except:
             self.__logger.printLog(message="ERROR in openFileDialogWindow()", color="red")
 
-    def getTxtFileContent(self, filePath: str):
+    def getJSONFileContent(self, filePath: str):
         try:
             with open(filePath) as file:
                 if not file:
@@ -143,7 +143,7 @@ class GuiVerifier:
         except IOError:
             self.__logger.printLog(message=f"An error occurred while reading the file", color="red")
         except:
-            self.__logger.printLog(message="ERROR in getTxtFileContent()", color="red")
+            self.__logger.printLog(message="ERROR in getJSONFileContent()", color="red")
 
     def saveProperty2File(self):
         fileName = self.__ui.txtPropertySaveFileName.text()

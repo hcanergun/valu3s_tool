@@ -1,5 +1,5 @@
 class Topic:
-    def __init__(self, name: str = None, type: str = None, action: str = None, publishers: [str] = None):
+    def __init__(self, name: str = None, type: str = None, action: str = None, publishers: list = []):
         self.__name = name
         self.__type = type
         self.__action = action
@@ -23,8 +23,8 @@ class Topic:
     def setAction(self, action: str):
         self.__action = action
 
-    def getPublishers(self) -> list:
+    def getPublishers(self) -> [str]:
         return self.__publishers
 
     def setPublishers(self, publishers: list):
-        self.__publishers = publishers
+        self.__publishers.append(publishers)
