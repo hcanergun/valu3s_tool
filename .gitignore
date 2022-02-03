@@ -6,11 +6,6 @@
 # JetBrains IDE
 .idea/
 __pycache__/
-
-updated/
-GuiTopic.py
-GuiMonitor.py
-GuiNode.py
 GuiOracle.py
 
 # virtual environment

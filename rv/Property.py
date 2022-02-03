@@ -26,5 +26,5 @@ class Property:
     def getNodeNames(self) -> [str]:
         return self.__nodeNames
 
-    def setNodeNames(self, nodeNames: str):
+    def setNodeName(self, nodeNames: str):
         self.__nodeNames.append(nodeNames)

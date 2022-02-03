@@ -28,11 +28,12 @@ class MainWindow(QMainWindow):
 
     def initGui(self):
 
-        self.__ui.btnConfigImportConf.clicked.connect(self.__guiConfig.importConfig)
         self.__ui.btnPropertyImport.clicked.connect(self.__guiVerifier.importProperty)
         self.__ui.btnPropertySave.clicked.connect(self.__guiVerifier.saveProperty2File)
 
         self.__ui.btnPropertyDefineCreate.clicked.connect(self.__guiVerifier.addProperty)
+        self.__ui.btnPropertyDefineUpdate.clicked.connect(self.__guiVerifier.editProperty)
+        self.__ui.btnPropertyDefineDelete.clicked.connect(self.__guiVerifier.deleteProperty)
         self.__ui.cbxPropertyDefineVerifier.activated.connect(self.__guiVerifier.setVerifierComponentsStatus)
         self.__ui.cbxPropertySaveType.activated.connect(self.__guiVerifier.updateVerifierSaveCbx)
 
