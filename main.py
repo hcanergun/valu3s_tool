@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
         self.__ui = Ui_MainWindow()
         self.__ui.setupUi(self)
 
-        self.__monitor = Monitor()
+        self.__monitor = []
         self.__rmlOracle = RMLOracle()
         self.__tlOracle = TLOracle()
 

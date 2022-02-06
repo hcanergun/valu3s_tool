@@ -17,7 +17,7 @@ class GuiMonitor:
         self.__logger = logger
         self.__rosws = None
 
-        os.system("roslaunch rosmonitoring/monitor/src/")
+        #os.system("roslaunch rosmonitoring/monitor/src/")
 
     def selectConfFile(self):
         if not self.__rosws:
