@@ -13,6 +13,7 @@ from rv.GuiMonitor import GuiMonitor
 catkin make yapılacak monitor için;
 $ roslaunch src/monitor/run.launch
 
+#zekeriyya
 """
 
 class MainWindow(QMainWindow):

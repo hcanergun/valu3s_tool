@@ -6,7 +6,6 @@
 # JetBrains IDE
 .idea/
 __pycache__/
-GuiOracle.py
 
 # virtual environment
 venv/
