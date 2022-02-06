@@ -1,0 +1,24 @@
+{
+    "properties": [
+        {
+            "name": "aa",
+            "description": "a",
+            "formula": "a",
+            "nodeNames": [
+                "deneme1",
+                "deneme2",
+                "deneme3"
+            ]
+        },
+        {
+            "name": "bb",
+            "description": "bsfsdf",
+            "formula": "bb",
+            "nodeNames": [
+                "deneme1",
+                "deneme3",
+                "deneme2"
+            ]
+        }
+    ]
+}

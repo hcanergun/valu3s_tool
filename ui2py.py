@@ -17,8 +17,12 @@ if __name__ == "__main__":
         print(f"'{filename}' is going to be converted !!")
 
         # designer.exe output file (filename.ui) is converting to python file (filename.ui).
+
+        # for windows
         # usage => pyuic5.exe -x guiFilename -o targetFilename
-        os.system(f"{pyuic5Path} -x {guiFilePath} -o {outputFileName}")
+
+        # for ubuntu
+        os.system(f"pyuic5 -x {guiFilePath} -o {outputFileName}")
 
         print(f"'{filename}' is SUCCESSFULY converted !!")
 

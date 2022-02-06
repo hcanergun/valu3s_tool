@@ -122,7 +122,7 @@ class GuiVerifier:
 
     def openFileDialogWindow(self) -> str:
         try:
-            filePath, check = QFileDialog.getOpenFileName(None, "Open File", "", "Text Files (*.json)")
+            filePath, check = QFileDialog.getOpenFileName(None, "Open File", "rosmonitoring/oracle", "Text Files (*.json)")
             if filePath:
                 self.__logger.printLog(message="File selection completed successfully", color="green")
                 return filePath
@@ -151,16 +151,15 @@ class GuiVerifier:
             items = self.__ui.lwPropertySaveSelect.selectedItems()
             if items:
                 try:
-                    with open(f'{fileName}.json', 'w') as f:
-                        if self.__ui.cbxPropertySaveType.currentText() == "TL Oracle":
-                            f.write(self.preparePropertiesJSON(
-                                self.__tlOracle.getPropertiesByName(names=[item.text() for item in items])))
-                        else:
-                            f.write(self.preparePropertiesJSON(
-                                self.__rmlOracle.getPropertiesByName(names=[item.text() for item in items])))
+                    if self.__ui.cbxPropertySaveType.currentText() == "TL Oracle":
+                        with open(f'rosmonitoring/oracle/TLOracle/properties/{fileName}.json', 'w') as f:
+                            f.write(self.preparePropertiesJSON(self.__tlOracle.getPropertiesByName(names=[item.text() for item in items])))
+                    else:
+                        with open(f'rosmonitoring/oracle/RMLOracle/rml/properties/{fileName}.json', 'w') as f:
+                            f.write(self.preparePropertiesJSON(self.__rmlOracle.getPropertiesByName(names=[item.text() for item in items])))
 
-                        self.__ui.txtPropertySaveFileName.clear()
-                        self.__logger.printLog(message="File content saved successfully", color="green")
+                    self.__ui.txtPropertySaveFileName.clear()
+                    self.__logger.printLog(message="File content saved successfully", color="green")
                 except IOError:
                     self.__logger.printLog(message=f"An error occurred while writing to the file", color="red")
                 except:

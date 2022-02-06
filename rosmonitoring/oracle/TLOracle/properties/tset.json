@@ -1,0 +1,12 @@
+{
+    "properties": [
+        {
+            "name": "asd",
+            "description": "asd",
+            "formula": "asd",
+            "nodeNames": [
+                "deneme2"
+            ]
+        }
+    ]
+}
