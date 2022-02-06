@@ -31,7 +31,7 @@ class GuiConfig:
         self.__ui.txtConfigOracleName.setEnabled(False)
 
     def createNode(self):
-        if len(self.__monitors) == 0:
+        if not len(self.__monitors):
             self.__logger.printLog("Please create Monitor before creating Node ", "red")
             return
 
@@ -61,6 +61,9 @@ class GuiConfig:
         self.__ui.txtConfigNodeName.clear()
         self.__ui.txtConfigNodePath.clear()
         self.__ui.txtConfigNodePackage.clear()
+
+        # self.__ui.cbxConfigNode.setCurrentIndex(self.__ui.cbxConfigNode.count() - 1)
+        # self.setNodeComponentStatus()
 
         self.__logger.printLog("Node successfully created.", 'green')
         self.previewListWidget()
@@ -103,6 +106,10 @@ class GuiConfig:
         self.__ui.cbxConfigTopicTopic.addItem(self.__ui.txtConfigTopicName.text())
         self.__ui.txtConfigTopicName.clear()
         self.__ui.txtConfigTopicType.clear()
+        self.__ui.cbxConfigTopicAction.setCurrentIndex(0)
+
+        # self.__ui.cbxConfigTopicTopic.setCurrentIndex(self.__ui.cbxConfigTopicTopic.count() - 1)
+        # self.setTopicComponentStatus()
 
         self.__logger.printLog("Topic successfully created.", 'green')
         self.previewListWidget()
@@ -162,53 +169,60 @@ class GuiConfig:
         self.__ui.cbxMonitorMonitor.addItem(self.__ui.txtConfigMonitorName.text())
         self.__ui.txtConfigMonitorName.clear()
         self.__ui.txtConfigMonitorLog.clear()
+        self.__ui.cbxMonitorSilent.setCurrentIndex(0)
+
+        # self.__ui.cbxMonitorMonitor.setCurrentIndex(self.__ui.cbxMonitorMonitor.count() - 1)
+        # self.setMonitorComponentStatus()
 
         self.__logger.printLog(f"Monitor successfully created.", 'green')
         self.previewListWidget()
 
     def updateNode(self):
+        nodes = self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes()
+        index = self.__ui.cbxConfigNode.currentIndex() - 1
+
         if self.__ui.txtConfigNodeName.text() == "" or \
                 self.__ui.txtConfigNodePath.text() == "" or \
                 self.__ui.txtConfigNodePackage.text() == "":
             self.__logger.printLog("Please fill in all Node properties", "red")
             return
 
-        for nodes in self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes():
-            if nodes.getName() == self.__ui.txtConfigNodeName.text():
-                self.__logger.printLog("Node name must be unique", "red")
-                return
+        if nodes[index].getName() != self.__ui.txtConfigNodeName.text():
+            for nodes in self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes():
+                if nodes.getName() == self.__ui.txtConfigNodeName.text():
+                    self.__logger.printLog("Node name must be unique", "red")
+                    return
 
-        if self.__ui.cbxConfigNode.currentText() != 'New Node':
-            nodes = self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes()
-            index = self.__ui.cbxConfigNode.currentIndex() - 1
-            nodes[index].setName(self.__ui.txtConfigNodeName.text())
-            nodes[index].setPath(self.__ui.txtConfigNodePath.text())
-            nodes[index].setPackageName(self.__ui.txtConfigNodePackage.text())
+        nodes[index].setName(self.__ui.txtConfigNodeName.text())
+        nodes[index].setPath(self.__ui.txtConfigNodePath.text())
+        nodes[index].setPackageName(self.__ui.txtConfigNodePackage.text())
 
-            self.__ui.cbxConfigNode.setItemText(self.__ui.cbxConfigNode.currentIndex(),
-                                                self.__ui.txtConfigNodeName.text())
-            self.__ui.cbxConfigTopicNode.setItemText(self.__ui.cbxConfigNode.currentIndex(),
-                                                     self.__ui.txtConfigNodeName.text())
+        self.__ui.cbxConfigNode.setItemText(self.__ui.cbxConfigNode.currentIndex(), self.__ui.txtConfigNodeName.text())
+        self.__ui.cbxConfigTopicNode.setItemText(self.__ui.cbxConfigNode.currentIndex(),
+                                                 self.__ui.txtConfigNodeName.text())
 
-            self.__ui.txtConfigNodeName.clear()
-            self.__ui.txtConfigNodePath.clear()
-            self.__ui.txtConfigNodePackage.clear()
-            self.__logger.printLog("Node successfully updated.", 'green')
+        self.__ui.txtConfigNodeName.clear()
+        self.__ui.txtConfigNodePath.clear()
+        self.__ui.txtConfigNodePackage.clear()
+
+        self.__logger.printLog("Node successfully updated.", 'green')
+        self.previewListWidget()
 
     def updateTopic(self):
+        topic = self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes()[
+            self.__ui.cbxConfigTopicNode.currentIndex()].getTopics()[self.__ui.cbxConfigTopicTopic.currentIndex() - 1]
+
         if self.__ui.txtConfigTopicName.text() == "" or \
                 self.__ui.txtConfigTopicType.text() == "":
             self.__logger.printLog("Please fill in all Topic properties", "red")
             return
 
-        for topics in self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes()[
-            self.__ui.cbxConfigTopicNode.currentIndex()].getTopics():
-            if topics.getName() == self.__ui.txtConfigTopicName.text():
-                self.__logger.printLog("Topic name must be unique", "red")
-                return
-
-        topic = self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes()[
-            self.__ui.cbxConfigTopicNode.currentIndex()].getTopics()[self.__ui.cbxConfigTopicTopic.currentIndex() - 1]
+        if topic.getName() != self.__ui.txtConfigTopicName.text():
+            for topics in self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes()[
+                self.__ui.cbxConfigTopicNode.currentIndex()].getTopics():
+                if topics.getName() == self.__ui.txtConfigTopicName.text():
+                    self.__logger.printLog("Topic name must be unique", "red")
+                    return
 
         topic.setName(self.__ui.txtConfigTopicName.text())
         topic.setType(self.__ui.txtConfigTopicType.text())
@@ -217,8 +231,10 @@ class GuiConfig:
         self.__ui.cbxConfigTopicTopic.setCurrentText(self.__ui.txtConfigTopicName.text())
         self.__ui.txtConfigTopicName.clear()
         self.__ui.txtConfigTopicType.clear()
+        self.__ui.cbxConfigTopicAction.setCurrentIndex(0)
 
         self.__logger.printLog("Topic successfully updated.", 'green')
+        self.previewListWidget()
 
     def updateOracle(self):
         if self.__ui.txtConfigOraclePort.text() == "" or self.__ui.txtConfigOracleUrl.text() == "":
@@ -238,13 +254,20 @@ class GuiConfig:
                                               self.__ui.cbxConfigOracleAction.currentText())
 
         self.__logger.printLog("Oracle successfully updated.", 'green')
+        self.previewListWidget()
 
     def updateMonitor(self):
         if self.__ui.txtConfigMonitorName.text() == "" or self.__ui.txtConfigMonitorLog.text() == "":
             self.__logger.printLog("Please fill in all Monitor properties", "red")
             return
-
         index = self.__ui.cbxMonitorMonitor.currentIndex() - 1
+
+        if self.__monitors[index].getName() != self.__ui.txtConfigMonitorName.text():
+            for monitor in self.__monitors:
+                if monitor.getName() == self.__ui.txtConfigMonitorName.text():
+                    self.__logger.printLog("Monitor name must be unique", "red")
+                    return
+
         self.__monitors[index].setName(self.__ui.txtConfigMonitorName.text())
         self.__monitors[index].setLogFileName(self.__ui.txtConfigMonitorLog.text())
         self.__monitors[index].setSilent(bool(self.__ui.cbxMonitorSilent.currentIndex()))
@@ -252,8 +275,10 @@ class GuiConfig:
                                                 self.__ui.txtConfigMonitorName.text())
         self.__ui.txtConfigMonitorName.clear()
         self.__ui.txtConfigMonitorLog.clear()
+        self.__ui.cbxMonitorSilent.setCurrentIndex(0)
 
         self.__logger.printLog("Monitor successfully updated.", 'green')
+        self.previewListWidget()
 
     def deleteNode(self):
         self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].removeNode(
@@ -261,41 +286,40 @@ class GuiConfig:
 
         self.__ui.cbxConfigTopicNode.removeItem(self.__ui.cbxConfigNode.currentIndex() - 1)
         self.__ui.cbxConfigNode.removeItem(self.__ui.cbxConfigNode.currentIndex())
-        self.__ui.txtConfigNodeName.clear()
-        self.__ui.txtConfigNodePath.clear()
-        self.__ui.txtConfigNodePackage.clear()
+
+        self.clearNodeComponents()
 
         self.__logger.printLog("Node successfully deleted.", 'green')
+        self.previewListWidget()
 
     def deleteTopic(self):
         self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].getNodes()[
             self.__ui.cbxConfigTopicNode.currentIndex()].removeTopic(self.__ui.cbxConfigTopicTopic.currentIndex() - 1)
         self.__ui.cbxConfigTopicTopic.removeItem(self.__ui.cbxConfigTopicTopic.currentIndex())
 
-        self.__ui.txtConfigTopicName.clear()
-        self.__ui.txtConfigTopicType.clear()
+        self.clearTopicComponents()
 
         self.__logger.printLog("Topic successfully deleted.", 'green')
+        self.previewListWidget()
 
     def deleteOracle(self):
         self.__monitors[self.__ui.cbxMonitorMonitor.currentIndex() - 1].setOracle(None)
 
-        self.__ui.txtConfigOraclePort.clear()
-        self.__ui.txtConfigOracleUrl.clear()
-        self.__ui.txtConfigOracleName.clear()
-        self.__ui.btnConfigOracleCreate.setDisabled(False)
-        self.__ui.btnConfigOracleUpdate.setDisabled(True)
-        self.__ui.btnConfigOracleDelete.setDisabled(True)
+        self.clearOracleComponents()
+
         self.__logger.printLog("Oracle successfully deleted.", 'green')
+        self.previewListWidget()
 
     def deleteMonitor(self):
         self.__monitors.pop(self.__ui.cbxMonitorMonitor.currentIndex() - 1)
 
         self.__ui.txtConfigMonitorName.clear()
         self.__ui.txtConfigMonitorLog.clear()
+        self.__ui.cbxMonitorSilent.setCurrentIndex(0)
         self.__ui.cbxMonitorMonitor.removeItem(self.__ui.cbxMonitorMonitor.currentIndex())
 
         self.__logger.printLog("Monitor successfully deleted.", 'green')
+        self.previewListWidget()
 
     def setNodeComponentStatus(self):
         if self.__ui.cbxConfigNode.currentText() != 'New Node':
@@ -308,9 +332,20 @@ class GuiConfig:
             self.__ui.btnConfigNodeDelete.setEnabled(True)
             self.__ui.btnConfigNodeCreate.setDisabled(True)
         else:
+            self.__ui.txtConfigNodeName.clear()
+            self.__ui.txtConfigNodePath.clear()
+            self.__ui.txtConfigNodePackage.clear()
             self.__ui.btnConfigNodeCreate.setEnabled(True)
             self.__ui.btnConfigNodeUpdate.setDisabled(True)
             self.__ui.btnConfigNodeDelete.setDisabled(True)
+
+    def clearNodeComponents(self):
+        self.__ui.txtConfigNodeName.clear()
+        self.__ui.txtConfigNodePath.clear()
+        self.__ui.txtConfigNodePackage.clear()
+        self.__ui.btnConfigNodeCreate.setEnabled(True)
+        self.__ui.btnConfigNodeUpdate.setDisabled(True)
+        self.__ui.btnConfigNodeDelete.setDisabled(True)
 
     def setTopicNodeComponentStatus(self):
         self.__ui.cbxConfigTopicTopic.clear()
@@ -339,9 +374,20 @@ class GuiConfig:
             self.__ui.btnConfigTopicDelete.setEnabled(True)
             self.__ui.btnConfigTopicCreate.setDisabled(True)
         else:
+            self.__ui.txtConfigTopicName.clear()
+            self.__ui.txtConfigTopicType.clear()
+            self.__ui.cbxConfigTopicAction.setCurrentIndex(0)
             self.__ui.btnConfigTopicCreate.setEnabled(True)
             self.__ui.btnConfigTopicUpdate.setDisabled(True)
             self.__ui.btnConfigTopicDelete.setDisabled(True)
+
+    def clearTopicComponents(self):
+        self.__ui.txtConfigTopicName.clear()
+        self.__ui.txtConfigTopicType.clear()
+        self.__ui.cbxConfigTopicAction.setCurrentIndex(0)
+        self.__ui.btnConfigTopicCreate.setEnabled(True)
+        self.__ui.btnConfigTopicUpdate.setDisabled(True)
+        self.__ui.btnConfigTopicDelete.setDisabled(True)
 
     def setMonitorComponentStatus(self):
         if self.__ui.cbxMonitorMonitor.currentText() != 'New Monitor':
@@ -362,9 +408,16 @@ class GuiConfig:
             self.__ui.cbxConfigNode.clear()
             self.__ui.cbxConfigTopicNode.clear()
             self.__ui.cbxConfigNode.addItem('New Node')
-            self.__ui.txtConfigOraclePort.clear()
-            self.__ui.txtConfigOracleUrl.clear()
-            self.__ui.txtConfigOracleName.clear()
+            self.__ui.cbxConfigTopicTopic.clear()
+            self.__ui.cbxConfigTopicTopic.addItem('New Topic')
+
+            self.clearNodeComponents()
+            self.clearTopicComponents()
+            self.clearOracleComponents()
+
+            self.__ui.txtConfigMonitorName.clear()
+            self.__ui.txtConfigMonitorLog.clear()
+            self.__ui.cbxMonitorSilent.setCurrentIndex(0)
             self.__ui.btnConfigMonitorCreate.setEnabled(True)
             self.__ui.btnConfigMonitorUpdate.setDisabled(True)
             self.__ui.btnConfigMonitorDelete.setDisabled(True)
@@ -376,11 +429,11 @@ class GuiConfig:
             self.__ui.txtConfigOraclePort.setText(str(oracle.getPort()))
             self.__ui.txtConfigOracleUrl.setText(oracle.getUrl())
             if oracle.getAction() == 'filter':
-                self.__ui.cbxConfigOracleAction.setCurrentIndex(0)
+                self.__ui.cbxConfigOracleAction.setCurrentIndex(2)
             elif oracle.getAction() == 'log':
                 self.__ui.cbxConfigOracleAction.setCurrentIndex(1)
             elif oracle.getAction() == 'nothing':
-                self.__ui.cbxConfigOracleAction.setCurrentIndex(2)
+                self.__ui.cbxConfigOracleAction.setCurrentIndex(0)
             self.__ui.txtConfigOracleName.setText(
                 str(oracle.getPort()) + ':' + oracle.getUrl() + '  -> ' + oracle.getAction())
             self.__ui.btnConfigOracleCreate.setDisabled(True)
@@ -390,9 +443,19 @@ class GuiConfig:
             self.__ui.txtConfigOraclePort.clear()
             self.__ui.txtConfigOracleUrl.clear()
             self.__ui.txtConfigOracleName.clear()
+            self.__ui.cbxConfigOracleAction.setCurrentIndex(0)
             self.__ui.btnConfigOracleCreate.setDisabled(False)
             self.__ui.btnConfigOracleUpdate.setDisabled(True)
             self.__ui.btnConfigOracleDelete.setDisabled(True)
+
+    def clearOracleComponents(self):
+        self.__ui.txtConfigOraclePort.clear()
+        self.__ui.txtConfigOracleUrl.clear()
+        self.__ui.txtConfigOracleName.clear()
+        self.__ui.cbxConfigOracleAction.setCurrentIndex(0)
+        self.__ui.btnConfigOracleCreate.setDisabled(False)
+        self.__ui.btnConfigOracleUpdate.setDisabled(True)
+        self.__ui.btnConfigOracleDelete.setDisabled(True)
 
     def fillNodeLists(self):
         index = self.__ui.cbxMonitorMonitor.currentIndex() - 1
@@ -410,10 +473,16 @@ class GuiConfig:
             self.__ui.listWidget.addItem(line)
 
     def saveConfig2file(self):
+        if not self.__ui.txtConfigSaveYaml.text():
+            self.__logger.printLog("Please fill the file name field.", color="red")
+            return
+        if not self.__monitors.__len__():
+            self.__logger.printLog("Can not cast to file, no monitor exists.", color="red")
+            return
         try:
             with open(self.__ui.txtConfigSaveYaml.text() + ".yaml", 'w') as file:
                 if not file:
-                    raise IOError("An error occurred while reading the file")
+                    raise IOError("An error occurred while reading the file", color="red")
                 file.write(self.cast2configFile())
                 self.__logger.printLog("Config file successfully created.", "green")
         except IOError:
@@ -422,29 +491,19 @@ class GuiConfig:
             self.__logger.printLog("ERROR in saveConfig2file()", color="red")
 
     def importConfig(self):
-        filePath = self.openFileDialogWindow()
-        if not filePath:
-            return
-        fileContent = self.getYAMLFileContent(filePath=filePath)
-
-        # todo
-        # parse content to monitor object
-
-    def getYAMLFileContent(self, filePath: str):
-        pass
-
-    def openFileDialogWindow(self) -> str:
+        fname = 'file/to/open'
         try:
-            filePath, check = QFileDialog.getOpenFileName(None, "Open File", "", "Text Files (*.yaml)")
-            if filePath:
-                self.__logger.printLog(message="File selection completed successfully", color="green")
-                return filePath
-            else:
-                raise IOError(f"An error occurred while opening the file")
-        except IOError:
-            self.__logger.printLog(message=f"An error occurred while opening the file", color="red")
+            fname, filter = QFileDialog.getOpenFileName(None, 'Select config file', '', 'Graph (*.yaml);;All files (*)')
+            if not fname:
+                raise ImportError(f"<CONFIG IMPORT> An error occurred while {fname} importing")
+            self.insertConfigFile(fname)
+
+        except ImportError:
+            self.__logger.printLog(f"An error occurred while {fname} importing")
         except:
-            self.__logger.printLog(message="ERROR in openFileDialogWindow()", color="red")
+            self.__logger.printLog(f"An error occurred while {fname} importing")
+        finally:
+            pass
 
     def cast2configFile(self):
         fileNodes = "#CREATED FILE\n\n"
@@ -489,3 +548,70 @@ class GuiConfig:
                 fileNodes += '\n\n'
 
         return fileNodes + fileTopics
+
+    def insertConfigFile(self, filename):
+        f = open(filename, 'r')
+        nodeList = []
+        line = f.readline()
+        while line:
+            line = line.strip()
+            if line[:7] == "- node:":
+                node = Node(name=(f.readline().replace(' ', '').replace("name:", "")).split("#")[0].rstrip("\n"),
+                            type=None,
+                            packageName=(f.readline().replace(' ', '').replace("package:", "")).split("#")[0].rstrip(
+                                "\n"),
+                            path=(f.readline().replace(' ', '').replace("path:", "")).split("#")[0].rstrip("\n"),
+                            launchName=None,
+                            topics=[])
+                nodeList.append(node)
+            if line[:9] == "monitors:":
+                break
+            line = f.readline()
+        while line:
+            if line[:9] == "monitors:":
+                (f.readline())
+                monitor = Monitor(name=(f.readline().replace(' ', '').replace("id:", "")).split("#")[0].rstrip("\n"),
+                                  logFileName=(f.readline().replace(' ', '').replace("log:", "")).split("#")[0].rstrip(
+                                      "\n"),
+                                  silent=bool(
+                                      (f.readline().replace(' ', '').replace("silent:", "")).split("#")[0].rstrip(
+                                          "\n")),
+                                  oracle=None, nodes=[])
+                (f.readline())
+                oracle = Verifier(
+                    port=int((f.readline().replace(' ', '').replace("port:", "")).split("#")[0].rstrip("\n")),
+                    url=(f.readline().replace(' ', '').replace("url:", "")).split("#")[0].rstrip("\n"),
+                    action=(f.readline().replace(' ', '').replace("action:", "")).split("#")[0].rstrip("\n"))
+                monitor.setOracle(oracle)
+                while line:
+                    line = line.strip()
+                    if line[:7] == "- name:":  # topic
+                        topic = Topic(name=(line.replace(' ', '').replace("-name:", "")).split("#")[0].rstrip("\n"),
+                                      type=(f.readline().replace(' ', '').replace("type:", "")).split("#")[0].rstrip(
+                                          "\n"),
+                                      action=(f.readline().replace(' ', '').replace("action:", "")).split("#")[
+                                          0].rstrip("\n"),
+                                      publishers=[])
+                        f.readline()
+                        subLine = f.readline()
+                        while subLine:
+                            if subLine[:14] != "            - ":
+                                break
+                            subLine = (subLine.replace(' ', '').replace("-", "")).split("#")[0].rstrip("\n")
+                            if not topic.getPublishers():
+                                topic.addPublisher(subLine)
+                                indexofnode = self.findIndexOfNode(nodeList, subLine)
+                                nodeList[indexofnode].appendTopic(topic)
+                                monitor.appendNode(nodeList[indexofnode])
+                            subLine = f.readline()
+                    line = f.readline()
+                self.__monitors.append(monitor)
+                self.__ui.cbxMonitorMonitor.addItem(monitor.getName())
+            line = f.readline()
+        self.previewListWidget()
+
+    @staticmethod
+    def findIndexOfNode(nodes: [Node], name: str):
+        for i in range(nodes.__len__()):
+            if nodes[i].getName() == name:
+                return i

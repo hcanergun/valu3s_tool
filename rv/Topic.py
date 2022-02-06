@@ -28,3 +28,6 @@ class Topic:
 
     def setPublishers(self, publishers: list):
         self.__publishers.append(publishers)
+
+    def addPublisher(self, publisher: str):
+        self.__publishers.append(publisher)
