@@ -21,3 +21,4 @@ class GuiLog:
             item.setForeground(Qt.black)
 
         self.__ui.lwLog.addItem(item)
+        self.__ui.lwLog.scrollToBottom()
